@@ -1,19 +1,22 @@
 language: go
- 
 go:
-  - 1.11.x
-cache: 
+- 1.11.x
+cache:
   directories:
-    - "$HOME/google-cloud-sdk/"
+  - "$HOME/google-cloud-sdk/"
 before_deploy:
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-  - source /home/travis/google-cloud-sdk/path.bash.inc
-  - gcloud --quiet version
-  - gcloud --quiet components update
-  - gcloud --quiet components update kubectl
+- if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export
+  CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+- source /home/travis/google-cloud-sdk/path.bash.inc
+- gcloud --quiet version
+- gcloud --quiet components update
+- gcloud --quiet components update kubectl
 deploy:
-  - provider: script
-    script: scripts/build.sh
-    skip_cleanup: true
-    on:
-      branch: master
+- provider: script
+  script: scripts/build.sh
+  skip_cleanup: true
+  on:
+    branch: master
+notifications:
+  slack:
+    secure: W/4wEZrR0dzDkXifV2FyS5z0krMiJ7qTcRdW/s/ma9r1xmrHt6h/4ZCLvGlYcr5RCaS/HWtBPgLiS7JtHucpRY1ba9egk+wtCcWY32u0wBA5RS+nC6gopaPrIgK8TwvzQr6qzG3ZnthAhFs+FONC3MkjVX6N/Edpzec7nPv23xxlMssr2QXfDRTKrFAh6G4+Ch1ijo5rPM4oqzIg1QLX4mgHsAKXoDp7U8rMIAa4XDw6BYpkBG1AUeXS1W5/0MyqyUy4nc2N2K8A5HH3H5IJrpBrK8u3ziOmyLdZ8OjAVWb/wyFRvIKIXJ6hGAJ6X7sQgHM8MkFreELgJiJkFshVrsRl1EtNgLZQPzCxu81Klht7UIng1K4VjhNVkLuDZj3mrSrVQGc9BnMlior+gxcsHt2/G6kh3MVUZJ/LjCr1f5SrXUASmO1giaKCvX9GGznJ9CS4XrW1FX5X41RX63Xic+1smilEx57xwQXfkql4kc/bbDkD8lcDT1KTueZRhcla4NCsrY25aq/7j6xHfFNZrPTXLAgmqnKoeIXK7H1gfh4IzNji5puJyIErhN/FnbSvz+feyRVWWqURJEh1FYuqdIEN/TEQVQdC8chcdjCaMh+pn0wN7m7lF1HooRBRMZzbODjYpLNx+0WnmkJtkLq4D4p3uxDU2S01VpQ9KJm+Fpk=
