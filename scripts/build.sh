@@ -17,7 +17,7 @@ gcloud --quiet config set container/cluster ${CLUSTER}
 gcloud --quiet config set compute/zone ${ZONE}
 # gcloud --quiet container clusters get-credentials ${CLUSTER}
 
-gcloud auth configure docker
+gcloud auth configure-docker
 
 docker push gcr.io/${PROJECT}/${DOCKER_IMAGE}:${TRAVIS_COMMIT}
 

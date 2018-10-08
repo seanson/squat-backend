@@ -1,4 +1,7 @@
-language: generic
+language: go
+ 
+go:
+  - 1.11.x
 cache: 
   directories:
     - "$HOME/google-cloud-sdk/"
