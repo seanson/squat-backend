@@ -1,0 +1,36 @@
+# k8s/squat-backend.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: squat-backend
+  labels:
+    app: squat-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: squat-backend
+  template:
+    metadata:
+      labels:
+        app: squat-backend
+    spec:
+      containers:
+      - name: squat-backend
+        image: gcr.io/{{ .Values.global.project }}/squat-backend:{{ .Values.global.version }}
+        ports:
+        - containerPort: 3000
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: squat-backend
+spec:
+  selector:
+    app: squat-backend
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000

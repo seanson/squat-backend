@@ -1,0 +1,4 @@
+global:
+  domain: squat.farm
+  project: squat-cloud
+  version: latest
