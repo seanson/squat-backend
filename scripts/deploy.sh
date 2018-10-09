@@ -25,10 +25,11 @@ helm template --set global.version=${TRAVIS_COMMIT} \
               charts/deploy | \
               kubectl apply -f -
 
-kubectl wait --namespace ${DOCKER_IMAGE} \
-             --for=condition=available \
-             --timeout=60s \
-             deployment/${DOCKER_IMAGE}
+# Not available until kubectl 1.11
+# kubectl wait --namespace ${DOCKER_IMAGE} \
+#              --for=condition=available \
+#              --timeout=60s \
+#              deployment/${DOCKER_IMAGE}
 
 yes | gcloud beta container images add-tag gcr.io/${PROJECT}/${DOCKER_IMAGE}:${TRAVIS_COMMIT} gcr.io/${PROJECT}/${DOCKER_IMAGE}:latest
 
