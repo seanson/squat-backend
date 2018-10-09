@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: squat-backend
+  namespace: squat-backend
   labels:
     app: squat-backend
 spec:
@@ -12,6 +13,7 @@ spec:
       app: squat-backend
   template:
     metadata:
+      namespace: squat-backend
       labels:
         app: squat-backend
     spec:
@@ -27,6 +29,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: squat-backend
+  namespace: squat-backend
 spec:
   selector:
     app: squat-backend
