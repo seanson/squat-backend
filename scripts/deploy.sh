@@ -4,6 +4,7 @@ PROJECT=squat-cloud
 CLUSTER=squat-cluster
 ZONE=us-central1-a
 DOCKER_IMAGE=squat-backend
+CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 set -euo pipefail
 
@@ -31,5 +32,5 @@ helm template --set global.version=${TRAVIS_COMMIT} \
 #              --timeout=60s \
 #              deployment/${DOCKER_IMAGE}
 
-yes | gcloud beta container images add-tag gcr.io/${PROJECT}/${DOCKER_IMAGE}:${TRAVIS_COMMIT} gcr.io/${PROJECT}/${DOCKER_IMAGE}:latest
+gcloud container images add-tag gcr.io/${PROJECT}/${DOCKER_IMAGE}:${TRAVIS_COMMIT} gcr.io/${PROJECT}/${DOCKER_IMAGE}:latest
 
