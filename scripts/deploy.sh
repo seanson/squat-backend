@@ -15,7 +15,7 @@ gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
 gcloud --quiet config set project ${PROJECT}
 gcloud --quiet config set container/cluster ${CLUSTER}
 gcloud --quiet config set compute/zone ${ZONE}
-gcloud --quiet container clusters get-credentials ${CLUSTER}
+# gcloud --quiet container clusters get-credentials ${CLUSTER}
 
 gcloud auth configure-docker
 

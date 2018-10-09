@@ -9,7 +9,6 @@ RUN CGO_ENABLED=0 \
     go build -a \
              -installsuffix cgo \
              -ldflags="-w -s" \
-             -v \
              -o /go/bin/squat-backend
 
 FROM scratch
